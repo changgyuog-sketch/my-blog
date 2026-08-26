@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>새 글은 이렇게 작성하세요 · My Blog</title>
+<meta name="description" content="새로운 마크다운 글을 추가하는 방법을 정리했습니다.">
+<link rel="stylesheet" href="../assets/css/style.css">
+<script>
+  // 다크모드 깜빡임 방지: CSS가 그려지기 전에 저장된 테마를 먼저 적용
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      if (t === 'dark' || t === 'light') {
+        document.documentElement.setAttribute('data-theme', t);
+      }
+    } catch (e) {}
+  })();
+</script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="site-title" href="../index.html">My Blog</a>
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="다크모드 전환">
+        <span class="theme-icon" aria-hidden="true"></span>
+      </button>
+    </div>
+  </header>
+
+  <main class="container">
+    <article class="post">
+      <header class="post-header">
+        <h1>새 글은 이렇게 작성하세요</h1>
+        <p class="post-meta">
+          <time datetime="2026-08-25">2026년 8월 25일</time> <span class="post-tags"><span class="tag">#가이드</span></span>
+        </p>
+      </header>
+      <div class="post-content">
+<p>새 글을 추가하는 방법은 간단합니다.</p>
+<ol>
+<li><code>content/posts/</code> 폴더에 <code>YYYY-MM-DD-제목.md</code> 형식으로 파일을 만듭니다.</li>
+<li>파일 맨 위에 아래처럼 프론트매터를 작성합니다.</li>
+</ol>
+<pre><code class="language-yaml">---
+title: &quot;글 제목&quot;
+date: &quot;2026-08-25&quot;
+tags: [&quot;태그1&quot;, &quot;태그2&quot;]
+description: &quot;목록 페이지에 보여줄 한 줄 설명&quot;
+---
+</code></pre>
+<ol start="3">
+<li>그 아래에 본문을 마크다운으로 씁니다.</li>
+<li><code>npm run build</code>를 실행하면 <code>dist/</code> 아래에 정적 HTML이 생성됩니다.
+개발 중에는 <code>npm run dev</code>를 실행해두면 파일을 저장할 때마다 자동으로
+다시 빌드됩니다.</li>
+</ol>
+<h2>목차 삼아 정리하면</h2>
+<table>
+<thead>
+<tr>
+<th>단계</th>
+<th>명령어</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>의존성 설치</td>
+<td><code>npm install</code></td>
+</tr>
+<tr>
+<td>빌드</td>
+<td><code>npm run build</code></td>
+</tr>
+<tr>
+<td>개발 서버 + 자동 재빌드</td>
+<td><code>npm run dev</code></td>
+</tr>
+</tbody></table>
+<p>이 표처럼 표(table), 목록, 코드블록, 인용문 등 기본적인 마크다운 문법을
+모두 지원합니다.</p>
+
+      </div>
+    </article>
+
+    <p class="back-link"><a href="../index.html">← 목록으로</a></p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2026 My Blog</p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

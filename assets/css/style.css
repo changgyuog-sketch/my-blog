@@ -1,0 +1,400 @@
+/* ==========================================================================
+   변수 (라이트 모드 기본값)
+   ========================================================================== */
+:root {
+  --color-bg: #ffffff;
+  --color-bg-secondary: #f5f5f7;
+  --color-text: #1a1a1a;
+  --color-text-secondary: #5b5b63;
+  --color-border: #e6e6e9;
+  --color-link: #2563eb;
+  --color-link-hover: #1d4ed8;
+  --color-code-bg: #f5f5f7;
+  --color-inline-code-bg: #eef0f3;
+  --color-blockquote-border: #d8dae0;
+  --color-tag-bg: #eef0f3;
+  --color-tag-text: #4b4b52;
+
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo",
+    "Noto Sans KR", "Malgun Gothic", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono",
+    Menlo, monospace;
+
+  --max-width: 720px;
+  --transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+/* 시스템이 다크모드일 때: data-theme="light" 로 강제 라이트가 아닌 이상 다크 팔레트 적용 */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --color-bg: #0f1115;
+    --color-bg-secondary: #16181d;
+    --color-text: #e6e6ea;
+    --color-text-secondary: #a2a2ac;
+    --color-border: #2a2c33;
+    --color-link: #7aa8ff;
+    --color-link-hover: #9cbfff;
+    --color-code-bg: #16181d;
+    --color-inline-code-bg: #1d2027;
+    --color-blockquote-border: #33353d;
+    --color-tag-bg: #1d2027;
+    --color-tag-text: #b7b7c0;
+  }
+}
+
+/* 수동으로 다크모드를 켠 경우 (시스템 설정과 무관하게) */
+:root[data-theme="dark"] {
+  --color-bg: #0f1115;
+  --color-bg-secondary: #16181d;
+  --color-text: #e6e6ea;
+  --color-text-secondary: #a2a2ac;
+  --color-border: #2a2c33;
+  --color-link: #7aa8ff;
+  --color-link-hover: #9cbfff;
+  --color-code-bg: #16181d;
+  --color-inline-code-bg: #1d2027;
+  --color-blockquote-border: #33353d;
+  --color-tag-bg: #1d2027;
+  --color-tag-text: #b7b7c0;
+}
+
+/* ==========================================================================
+   리셋 / 기본
+   ========================================================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: 17px;
+  line-height: 1.75;
+  transition: var(--transition);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+}
+
+a {
+  color: var(--color-link);
+  text-decoration: none;
+}
+
+a:hover,
+a:focus-visible {
+  color: var(--color-link-hover);
+  text-decoration: underline;
+}
+
+/* ==========================================================================
+   헤더 / 푸터
+   ========================================================================== */
+.site-header {
+  border-bottom: 1px solid var(--color-border);
+  transition: var(--transition);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+}
+
+.site-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-text);
+  letter-spacing: -0.01em;
+}
+
+.site-title:hover {
+  color: var(--color-text);
+  text-decoration: none;
+  opacity: 0.75;
+}
+
+.theme-toggle {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 999px;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-bg-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+}
+
+.theme-toggle:hover {
+  border-color: var(--color-text-secondary);
+}
+
+.theme-icon {
+  display: block;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #f5b301 0%, #f5b301 50%, transparent 50%);
+  box-shadow: inset 0 0 0 1px var(--color-text-secondary);
+}
+
+:root[data-theme="dark"] .theme-icon {
+  background: linear-gradient(135deg, #7aa8ff 0%, #7aa8ff 50%, transparent 50%);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .theme-icon {
+    background: linear-gradient(135deg, #7aa8ff 0%, #7aa8ff 50%, transparent 50%);
+  }
+}
+
+.site-footer {
+  margin-top: auto;
+  border-top: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
+  font-size: 0.85rem;
+}
+
+.site-footer .container {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+/* ==========================================================================
+   레이아웃
+   ========================================================================== */
+main.container {
+  flex: 1;
+  padding-top: 2.5rem;
+  padding-bottom: 3rem;
+}
+
+.site-description {
+  color: var(--color-text-secondary);
+  margin-top: 0;
+  margin-bottom: 2rem;
+}
+
+/* ==========================================================================
+   글 목록 (index)
+   ========================================================================== */
+.post-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.post-item {
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.post-item:first-child {
+  padding-top: 0;
+}
+
+.post-item-title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.post-item-title:hover {
+  color: var(--color-link);
+}
+
+.post-item-meta {
+  margin: 0.35rem 0 0;
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+}
+
+.post-item-desc {
+  margin: 0.5rem 0 0;
+  color: var(--color-text-secondary);
+}
+
+.post-item-empty {
+  color: var(--color-text-secondary);
+  border-bottom: none;
+}
+
+.tag {
+  display: inline-block;
+  background-color: var(--color-tag-bg);
+  color: var(--color-tag-text);
+  padding: 0.05rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  margin-right: 0.25rem;
+}
+
+/* ==========================================================================
+   개별 글 (post)
+   ========================================================================== */
+.post-header {
+  margin-bottom: 2rem;
+}
+
+.post-header h1 {
+  font-size: 1.9rem;
+  line-height: 1.35;
+  margin: 0 0 0.6rem;
+  letter-spacing: -0.01em;
+}
+
+.post-meta {
+  color: var(--color-text-secondary);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.post-content h2 {
+  font-size: 1.4rem;
+  margin-top: 2.2rem;
+  margin-bottom: 0.8rem;
+}
+
+.post-content h3 {
+  font-size: 1.15rem;
+  margin-top: 1.8rem;
+  margin-bottom: 0.6rem;
+}
+
+.post-content p {
+  margin: 1.1rem 0;
+}
+
+.post-content ul,
+.post-content ol {
+  margin: 1.1rem 0;
+  padding-left: 1.4rem;
+}
+
+.post-content li + li {
+  margin-top: 0.35rem;
+}
+
+.post-content blockquote {
+  margin: 1.5rem 0;
+  padding: 0.2rem 1rem;
+  border-left: 3px solid var(--color-blockquote-border);
+  color: var(--color-text-secondary);
+}
+
+.post-content blockquote p {
+  margin: 0.6rem 0;
+}
+
+.post-content hr {
+  border: none;
+  border-top: 1px solid var(--color-border);
+  margin: 2.5rem 0;
+}
+
+.post-content code {
+  font-family: var(--font-mono);
+  font-size: 0.88em;
+  background-color: var(--color-inline-code-bg);
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+}
+
+.post-content pre {
+  background-color: var(--color-code-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 1rem 1.1rem;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+}
+
+.post-content pre code {
+  background: none;
+  padding: 0;
+  font-size: 0.85em;
+  line-height: 1.6;
+}
+
+.post-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.9rem;
+  display: block;
+  overflow-x: auto;
+}
+
+.post-content th,
+.post-content td {
+  border: 1px solid var(--color-border);
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+}
+
+.post-content th {
+  background-color: var(--color-bg-secondary);
+}
+
+.back-link {
+  margin-top: 3rem;
+  font-size: 0.9rem;
+}
+
+/* ==========================================================================
+   반응형 (모바일)
+   ========================================================================== */
+@media (max-width: 640px) {
+  body {
+    font-size: 16px;
+  }
+
+  .container {
+    padding: 0 1rem;
+  }
+
+  main.container {
+    padding-top: 1.75rem;
+    padding-bottom: 2rem;
+  }
+
+  .post-header h1 {
+    font-size: 1.55rem;
+  }
+
+  .post-content h2 {
+    font-size: 1.25rem;
+  }
+
+  .post-content h3 {
+    font-size: 1.08rem;
+  }
+
+  .header-inner {
+    padding: 0.85rem 1rem;
+  }
+}

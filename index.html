@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Blog</title>
+<meta name="description" content="마크다운으로 쓰는 개인 블로그">
+<link rel="stylesheet" href="assets/css/style.css">
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      if (t === 'dark' || t === 'light') {
+        document.documentElement.setAttribute('data-theme', t);
+      }
+    } catch (e) {}
+  })();
+</script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="site-title" href="index.html">My Blog</a>
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="다크모드 전환">
+        <span class="theme-icon" aria-hidden="true"></span>
+      </button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="post-list-section">
+      <p class="site-description">마크다운으로 쓰는 개인 블로그</p>
+      <ul class="post-list">
+      <li class="post-item">
+        <a class="post-item-title" href="posts/오늘-배운것.html">오늘 배운 것</a>
+        <p class="post-item-meta"><time datetime="2026-08-26">2026년 8월 26일</time> <span class="post-tags"><span class="tag">#회고</span> <span class="tag">#블로그</span></span></p>
+        <p class="post-item-desc">클로드 코드로 블로그를 만들면서 정리한 HTML, CSS, JavaScript의 역할</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item-title" href="posts/writing-a-new-post.html">새 글은 이렇게 작성하세요</a>
+        <p class="post-item-meta"><time datetime="2026-08-25">2026년 8월 25일</time> <span class="post-tags"><span class="tag">#가이드</span></span></p>
+        <p class="post-item-desc">새로운 마크다운 글을 추가하는 방법을 정리했습니다.</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item-title" href="posts/hello-world.html">안녕하세요, 첫 글입니다</a>
+        <p class="post-item-meta"><time datetime="2026-08-20">2026년 8월 20일</time> <span class="post-tags"><span class="tag">#소개</span> <span class="tag">#블로그</span></span></p>
+        <p class="post-item-desc">마크다운으로 쓰고 정적 HTML로 빌드되는 블로그의 첫 번째 글입니다.</p>
+      </li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2026 My Blog</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

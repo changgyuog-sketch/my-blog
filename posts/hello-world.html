@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>안녕하세요, 첫 글입니다 · My Blog</title>
+<meta name="description" content="마크다운으로 쓰고 정적 HTML로 빌드되는 블로그의 첫 번째 글입니다.">
+<link rel="stylesheet" href="../assets/css/style.css">
+<script>
+  // 다크모드 깜빡임 방지: CSS가 그려지기 전에 저장된 테마를 먼저 적용
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      if (t === 'dark' || t === 'light') {
+        document.documentElement.setAttribute('data-theme', t);
+      }
+    } catch (e) {}
+  })();
+</script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="site-title" href="../index.html">My Blog</a>
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="다크모드 전환">
+        <span class="theme-icon" aria-hidden="true"></span>
+      </button>
+    </div>
+  </header>
+
+  <main class="container">
+    <article class="post">
+      <header class="post-header">
+        <h1>안녕하세요, 첫 글입니다</h1>
+        <p class="post-meta">
+          <time datetime="2026-08-20">2026년 8월 20일</time> <span class="post-tags"><span class="tag">#소개</span> <span class="tag">#블로그</span></span>
+        </p>
+      </header>
+      <div class="post-content">
+<p>이 블로그는 <strong>마크다운 파일</strong>을 작성하면 빌드 스크립트가 이를 읽어 정적인
+HTML 페이지로 변환해주는 구조입니다. React나 Vue 같은 프레임워크 없이,
+순수 HTML/CSS/JavaScript만으로 동작합니다.</p>
+<h2>이 블로그의 특징</h2>
+<ul>
+<li>마크다운으로 글쓰기 → 빌드 → 정적 사이트 생성</li>
+<li>다크모드 지원 (시스템 설정 자동 감지 + 우측 상단 버튼으로 수동 전환)</li>
+<li>모바일에서도 읽기 편한 반응형 레이아웃</li>
+</ul>
+<h2>코드 블록 예시</h2>
+<pre><code class="language-js">function greet(name) {
+  return `안녕하세요, ${name}님!`;
+}
+
+console.log(greet(&#39;세상&#39;));
+</code></pre>
+<blockquote>
+<p>인용문도 이렇게 스타일이 적용됩니다. 읽기 편한 것이 최우선 목표입니다.</p>
+</blockquote>
+<p>앞으로 <code>content/posts/</code> 폴더에 마크다운 파일을 추가하고 <code>npm run build</code>
+(또는 <code>npm run dev</code>)만 실행하면 새 글이 자동으로 목록에 나타납니다.</p>
+
+      </div>
+    </article>
+
+    <p class="back-link"><a href="../index.html">← 목록으로</a></p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2026 My Blog</p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>오늘 배운 것 · My Blog</title>
+<meta name="description" content="클로드 코드로 블로그를 만들면서 정리한 HTML, CSS, JavaScript의 역할">
+<link rel="stylesheet" href="../assets/css/style.css">
+<script>
+  // 다크모드 깜빡임 방지: CSS가 그려지기 전에 저장된 테마를 먼저 적용
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      if (t === 'dark' || t === 'light') {
+        document.documentElement.setAttribute('data-theme', t);
+      }
+    } catch (e) {}
+  })();
+</script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="site-title" href="../index.html">My Blog</a>
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="다크모드 전환">
+        <span class="theme-icon" aria-hidden="true"></span>
+      </button>
+    </div>
+  </header>
+
+  <main class="container">
+    <article class="post">
+      <header class="post-header">
+        <h1>오늘 배운 것</h1>
+        <p class="post-meta">
+          <time datetime="2026-08-26">2026년 8월 26일</time> <span class="post-tags"><span class="tag">#회고</span> <span class="tag">#블로그</span></span>
+        </p>
+      </header>
+      <div class="post-content">
+<p>클로드 코드와 함께 이 블로그를 만들면서, 프레임워크 없이 순수
+HTML/CSS/JavaScript만으로도 각자의 역할을 명확히 나누면 충분히 깔끔한
+결과물이 나온다는 걸 배웠다. 오늘 배운 내용을 간단히 정리해본다.</p>
+<h2>HTML — 구조를 담당</h2>
+<ul>
+<li>HTML은 페이지의 뼈대다. <code>header</code>, <code>main</code>, <code>article</code>, <code>footer</code> 같은
+태그로 콘텐츠의 의미를 나눈다.</li>
+<li>템플릿 파일(<code>templates/post.html</code>, <code>templates/index.html</code>)에는
+<code>{{title}}</code>, <code>{{content}}</code> 같은 자리표시자만 넣어두고, 빌드 스크립트가
+실제 값으로 치환해서 최종 HTML을 만든다.</li>
+<li>마크다운 본문도 결국 빌드 과정에서 <code>&lt;h2&gt;</code>, <code>&lt;ul&gt;</code>, <code>&lt;pre&gt;&lt;code&gt;</code> 같은
+평범한 HTML로 변환되어 템플릿 안에 끼워진다.</li>
+</ul>
+<h2>CSS — 스타일, 다크모드, 반응형을 담당</h2>
+<ul>
+<li>색상을 CSS 변수(<code>:root</code>)로 한 곳에 모아두면 다크모드 전환이 훨씬
+쉬워진다. 라이트/다크 각각 변수 값만 바꿔주면 되기 때문이다.</li>
+<li><code>prefers-color-scheme</code> 미디어 쿼리로 시스템 다크모드를 자동 감지하고,
+<code>data-theme</code> 속성으로 사용자가 수동으로 오버라이드할 수 있게 했다.</li>
+<li>좁은 화면에서는 미디어 쿼리로 폰트 크기와 여백을 줄여서 모바일에서도
+읽기 편하게 만들었다.</li>
+<li>코드블록에는 <code>overflow-x: auto</code>를 줘야 긴 코드가 있어도 모바일
+화면이 가로로 밀리지 않는다.</li>
+</ul>
+<h2>JavaScript — 아주 작은 상호작용만 담당</h2>
+<ul>
+<li>페이지 렌더링 자체는 빌드 타임에 이미 끝나 있어야 하고, 브라우저에서
+실행되는 JS는 다크모드 토글 버튼 클릭 같은 최소한의 상호작용만
+처리하면 된다.</li>
+<li>사용자가 고른 테마는 <code>localStorage</code>에 저장해서 다시 방문했을 때도
+유지되게 했다.</li>
+<li><code>&lt;head&gt;</code>에 아주 작은 인라인 스크립트를 넣어, CSS가 그려지기 전에
+저장된 테마를 먼저 적용했다. 이렇게 하지 않으면 페이지가 라이트
+모드로 잠깐 번쩍였다가 다크모드로 바뀌는 현상(FOUC)이 생긴다.</li>
+<li>빌드 스크립트(<code>build.js</code>, Node.js 환경)와 브라우저에서 실행되는
+코드(<code>main.js</code>)는 역할이 완전히 다르다는 것도 다시 확인했다.
+<code>fs</code>, <code>path</code> 같은 Node 전용 API는 브라우저용 JS에 절대 들어가면
+안 된다.</li>
+</ul>
+<h2>느낀 점</h2>
+<p>프레임워크가 없어도 &quot;HTML은 구조, CSS는 표현, JS는 최소한의 상호작용&quot;
+이라는 원칙만 지키면 충분히 유지보수하기 쉬운 결과물을 만들 수 있다는
+걸 몸으로 확인한 하루였다.</p>
+
+      </div>
+    </article>
+
+    <p class="back-link"><a href="../index.html">← 목록으로</a></p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2026 My Blog</p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>
