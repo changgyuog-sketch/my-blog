@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{title}} · {{siteTitle}}</title>
+<meta name="description" content="{{description}}">
+<link rel="stylesheet" href="{{rootPath}}assets/css/style.css">
+<script>
+  // 다크모드 깜빡임 방지: CSS가 그려지기 전에 저장된 테마를 먼저 적용
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      if (t === 'dark' || t === 'light') {
+        document.documentElement.setAttribute('data-theme', t);
+      }
+    } catch (e) {}
+  })();
+</script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="site-title" href="{{rootPath}}index.html">{{siteTitle}}</a>
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="다크모드 전환">
+        <span class="theme-icon" aria-hidden="true"></span>
+      </button>
+    </div>
+  </header>
+
+  <main class="container">
+    <article class="post">
+      <header class="post-header">
+        <h1>{{title}}</h1>
+        <p class="post-meta">
+          <time datetime="{{date}}">{{displayDate}}</time>{{tagsHtml}}
+        </p>
+      </header>
+      <div class="post-content">
+{{content}}
+      </div>
+    </article>
+
+    <p class="back-link"><a href="{{rootPath}}index.html">← 목록으로</a></p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; {{year}} {{siteTitle}}</p>
+    </div>
+  </footer>
+
+  <script src="{{rootPath}}assets/js/main.js"></script>
+</body>
+</html>

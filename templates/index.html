@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{title}}</title>
+<meta name="description" content="{{description}}">
+<link rel="stylesheet" href="{{rootPath}}assets/css/style.css">
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      if (t === 'dark' || t === 'light') {
+        document.documentElement.setAttribute('data-theme', t);
+      }
+    } catch (e) {}
+  })();
+</script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="site-title" href="{{rootPath}}index.html">{{siteTitle}}</a>
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="다크모드 전환">
+        <span class="theme-icon" aria-hidden="true"></span>
+      </button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="post-list-section">
+      <p class="site-description">{{description}}</p>
+      <ul class="post-list">
+{{postListHtml}}
+      </ul>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; {{year}} {{siteTitle}}</p>
+    </div>
+  </footer>
+
+  <script src="{{rootPath}}assets/js/main.js"></script>
+</body>
+</html>
