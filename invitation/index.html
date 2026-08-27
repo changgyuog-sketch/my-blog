@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>밀양안심방문간호센터 개업식에 초대합니다</title>
+<meta name="description" content="2026년 8월 30일 일요일 오전 11시, 경남 밀양시 시청로2길 4">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="assets/css/invitation.css">
+</head>
+<body>
+
+<div class="inv-page">
+
+  <section id="hero" class="inv-section">
+    <h1 id="hero-title" class="inv-hero-title inv-serif"></h1>
+    <p id="hero-date" class="inv-hero-date"></p>
+  </section>
+
+  <section id="greeting" class="inv-section">
+    <h2 class="inv-section-title inv-serif">인사말</h2>
+    <p id="greeting-message" class="inv-greeting-message"></p>
+    <div class="inv-organizer-info">
+      <p id="organizer-info" class="inv-organizer-row"></p>
+    </div>
+  </section>
+
+  <section id="dday" class="inv-section">
+    <h2 class="inv-section-title inv-serif">일시 안내</h2>
+    <p id="dday-date-display" class="inv-dday-date"></p>
+
+    <div class="inv-dday-card">
+      <div id="dday-upcoming" hidden>
+        <p id="dday-headline" class="inv-dday-headline"></p>
+        <div class="inv-dday-grid">
+          <div class="inv-dday-box">
+            <span id="dday-days" class="inv-dday-number">00</span>
+            <span class="inv-dday-label">일</span>
+          </div>
+          <div class="inv-dday-box">
+            <span id="dday-hours" class="inv-dday-number">00</span>
+            <span class="inv-dday-label">시</span>
+          </div>
+          <div class="inv-dday-box">
+            <span id="dday-minutes" class="inv-dday-number">00</span>
+            <span class="inv-dday-label">분</span>
+          </div>
+          <div class="inv-dday-box">
+            <span id="dday-seconds" class="inv-dday-number">00</span>
+            <span class="inv-dday-label">초</span>
+          </div>
+        </div>
+      </div>
+
+      <div id="dday-today" hidden>
+        <p class="inv-dday-badge">D-DAY</p>
+        <p id="dday-today-message" class="inv-dday-sub"></p>
+      </div>
+
+      <div id="dday-ended" hidden>
+        <p id="dday-ended-message" class="inv-dday-sub"></p>
+      </div>
+    </div>
+  </section>
+
+  <section id="location" class="inv-section">
+    <h2 class="inv-section-title inv-serif">오시는 길</h2>
+
+    <div class="inv-map-frame-wrap">
+      <iframe id="venue-map-iframe" src="" loading="lazy" title="지도"
+        referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+
+    <div class="inv-venue-info">
+      <p id="venue-name" class="inv-venue-name"></p>
+      <p id="venue-address" class="inv-venue-address"></p>
+      <p id="venue-tel" class="inv-venue-tel" hidden></p>
+    </div>
+
+    <div class="inv-venue-buttons">
+      <a id="btn-kakao-map" class="inv-btn inv-btn-primary" href="#">카카오맵에서 보기</a>
+      <a id="btn-naver-map" class="inv-btn inv-btn-secondary" href="#">네이버지도에서 보기</a>
+      <button id="btn-copy-address" type="button" class="inv-btn inv-btn-secondary">주소 복사</button>
+    </div>
+  </section>
+
+  <footer class="inv-footer">
+    <p class="inv-footer-message">따뜻한 마음으로 축하해 주시면 큰 힘이 되겠습니다.</p>
+    <button id="btn-share" type="button" class="inv-btn inv-btn-primary">공유하기</button>
+  </footer>
+
+</div>
+
+<div id="inv-toast" class="inv-toast" role="status" aria-live="polite"></div>
+
+<script src="assets/js/config.js"></script>
+<script src="assets/js/countdown.js"></script>
+<script src="assets/js/map.js"></script>
+<script src="assets/js/share.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
