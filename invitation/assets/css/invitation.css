@@ -1,0 +1,396 @@
+/* invitation/assets/css/invitation.css
+   모바일 초대장 전용 스타일시트. 블로그/스토어 CSS와 완전히 독립.
+   클래스 접두사 inv- 사용, 다른 스타일시트와 충돌 방지.
+   컨셉: "안심 케어(Trust & Care)" — 저채도 틸/민트 그린 + 아이보리 화이트. */
+
+/* ---------- 1. 컬러 변수 (라이트 모드, 기본값) ---------- */
+:root {
+  --inv-bg: #fbfdfc;
+  --inv-bg-secondary: #eef6f4;
+  --inv-bg-elevated: #ffffff;
+  --inv-text: #20302c;
+  --inv-text-secondary: #5c6f6a;
+  --inv-text-tertiary: #93a29d;
+  --inv-accent: #3f8f7d;
+  --inv-accent-hover: #357566;
+  --inv-border: #d3e6e0;
+  --inv-success: #3f8f7d;
+  --inv-shadow: 0 4px 24px rgba(30, 60, 50, 0.08);
+}
+
+/* 다크 모드 — 자동 감지(prefers-color-scheme) + [data-theme] 속성 토글 이중 지원 */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --inv-bg: #12201d;
+    --inv-bg-secondary: #1a2b26;
+    --inv-bg-elevated: #1f332c;
+    --inv-text: #eaf3f0;
+    --inv-text-secondary: #b7c9c3;
+    --inv-text-tertiary: #82938d;
+    --inv-accent: #5cc2a8;
+    --inv-accent-hover: #74d1b9;
+    --inv-border: #2c453c;
+    --inv-success: #5cc2a8;
+    --inv-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+  }
+}
+
+:root[data-theme="dark"] {
+  --inv-bg: #12201d;
+  --inv-bg-secondary: #1a2b26;
+  --inv-bg-elevated: #1f332c;
+  --inv-text: #eaf3f0;
+  --inv-text-secondary: #b7c9c3;
+  --inv-text-tertiary: #82938d;
+  --inv-accent: #5cc2a8;
+  --inv-accent-hover: #74d1b9;
+  --inv-border: #2c453c;
+  --inv-success: #5cc2a8;
+  --inv-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+}
+
+/* ---------- 2. 기본 리셋 / 타이포그래피 ---------- */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--inv-bg-secondary);
+  color: var(--inv-text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Malgun Gothic",
+    "Apple SD Gothic Neo", "Noto Sans KR", Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+.inv-serif {
+  font-family: "Noto Serif KR", "Nanum Myeongjo", "Apple SD Gothic Neo", serif;
+}
+
+/* ---------- 3. 레이아웃 컨테이너 (mobile-first) ---------- */
+.inv-page {
+  background: var(--inv-bg);
+  width: 100%;
+  padding: 0 24px;
+}
+
+.inv-section {
+  padding: 56px 0;
+}
+
+.inv-section:first-child {
+  padding-top: 56px;
+}
+
+/* 태블릿/데스크톱: 480px 카드 레이아웃 */
+@media (min-width: 768px) {
+  .inv-page {
+    max-width: 480px;
+    margin: 0 auto;
+    box-shadow: var(--inv-shadow);
+  }
+
+  .inv-section {
+    padding: 64px 0;
+  }
+
+  .inv-section:first-child {
+    padding-top: 64px;
+  }
+}
+
+/* ---------- 4. Hero 섹션 ---------- */
+#hero {
+  background: linear-gradient(160deg, var(--inv-bg-secondary), var(--inv-bg));
+  margin: 0 -24px;
+  padding: 80px 24px;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  #hero {
+    margin: 0;
+  }
+}
+
+.inv-hero-title {
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1.4;
+  margin: 0 0 16px;
+  color: var(--inv-text);
+}
+
+.inv-hero-date {
+  font-size: 14px;
+  color: var(--inv-text-tertiary);
+  margin: 0;
+}
+
+/* ---------- 5. 섹션 타이틀 ---------- */
+.inv-section-title {
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--inv-text);
+  margin: 0 0 24px;
+  text-align: center;
+}
+
+/* ---------- 6. Greeting 섹션 ---------- */
+.inv-greeting-message {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.75;
+  color: var(--inv-text);
+  text-align: center;
+  margin: 0 0 32px;
+}
+
+.inv-organizer-info {
+  background: var(--inv-bg-elevated);
+  border-radius: 20px;
+  box-shadow: var(--inv-shadow);
+  padding: 20px;
+}
+
+.inv-organizer-row {
+  font-size: 14px;
+  color: var(--inv-text-secondary);
+  text-align: center;
+  margin: 0;
+}
+
+/* ---------- 7. D-Day 섹션 ---------- */
+.inv-dday-date {
+  text-align: center;
+  font-size: 14px;
+  color: var(--inv-text-tertiary);
+  margin: 0 0 24px;
+}
+
+.inv-dday-card {
+  background: var(--inv-bg-elevated);
+  border-radius: 20px;
+  box-shadow: var(--inv-shadow);
+  padding: 24px;
+}
+
+.inv-dday-headline {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--inv-text);
+  text-align: center;
+  margin: 0 0 20px;
+}
+
+.inv-dday-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.inv-dday-box {
+  aspect-ratio: 1;
+  background: var(--inv-bg-secondary);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.inv-dday-number {
+  font-family: "Noto Serif KR", "Nanum Myeongjo", "Apple SD Gothic Neo", serif;
+  font-size: 30px;
+  font-weight: 600;
+  color: var(--inv-accent);
+  line-height: 1;
+}
+
+.inv-dday-label {
+  font-size: 14px;
+  color: var(--inv-text-tertiary);
+  margin-top: 6px;
+}
+
+.inv-dday-badge {
+  font-family: "Noto Serif KR", "Nanum Myeongjo", "Apple SD Gothic Neo", serif;
+  font-size: 30px;
+  font-weight: 600;
+  color: var(--inv-accent);
+  text-align: center;
+  margin: 0 0 12px;
+}
+
+.inv-dday-sub {
+  font-size: 16px;
+  color: var(--inv-text);
+  text-align: center;
+  margin: 0;
+}
+
+/* ---------- 8. Location 섹션 ---------- */
+.inv-map-frame-wrap {
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: var(--inv-shadow);
+  margin-bottom: 20px;
+}
+
+.inv-map-frame-wrap iframe {
+  display: block;
+  width: 100%;
+  height: 240px;
+  border: 0;
+}
+
+.inv-venue-info {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.inv-venue-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--inv-text);
+  margin: 0 0 6px;
+}
+
+.inv-venue-address {
+  font-size: 14px;
+  color: var(--inv-text-secondary);
+  margin: 0 0 4px;
+}
+
+.inv-venue-tel {
+  font-size: 14px;
+  color: var(--inv-text-tertiary);
+  margin: 0;
+}
+
+.inv-venue-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+/* ---------- 9. 버튼 ---------- */
+.inv-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: inherit;
+  border-radius: 999px;
+  padding: 14px 20px;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  transition: background-color 180ms ease;
+  white-space: nowrap;
+}
+
+.inv-btn-primary {
+  background: var(--inv-accent);
+  color: #fff;
+}
+
+.inv-btn-primary:hover,
+.inv-btn-primary:active {
+  background: var(--inv-accent-hover);
+}
+
+.inv-btn-secondary {
+  background: transparent;
+  color: var(--inv-text-secondary);
+  border: 1px solid var(--inv-border);
+}
+
+.inv-btn-secondary:hover,
+.inv-btn-secondary:active {
+  background: var(--inv-bg-secondary);
+}
+
+/* ---------- 10. Footer ---------- */
+.inv-footer {
+  padding: 56px 0 72px;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .inv-footer {
+    padding: 64px 0 80px;
+  }
+}
+
+.inv-footer-message {
+  font-size: 14px;
+  color: var(--inv-text-secondary);
+  margin: 0 0 24px;
+}
+
+/* ---------- 11. 토스트 ---------- */
+.inv-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 32px;
+  transform: translate(-50%, 16px);
+  background: var(--inv-success);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 12px 20px;
+  border-radius: 999px;
+  box-shadow: var(--inv-shadow);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 200ms ease, transform 200ms ease;
+  z-index: 100;
+}
+
+.inv-toast.is-visible {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+/* ---------- 12. 진입 애니메이션 ---------- */
+/* JS 실행 전/실패 시에도 콘텐츠가 기본적으로 보이도록 하는 이중 안전장치 */
+body:not(.js-ready) .inv-section,
+body:not(.js-ready) .inv-footer {
+  opacity: 1;
+  transform: none;
+}
+
+.js-ready .inv-section,
+.js-ready .inv-footer {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 400ms ease-out, transform 400ms ease-out;
+}
+
+.js-ready .inv-section.is-visible,
+.js-ready .inv-footer.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js-ready .inv-section,
+  .js-ready .inv-footer {
+    transition: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .inv-btn,
+  .inv-toast {
+    transition: none;
+  }
+}
