@@ -398,3 +398,15 @@ body:not(.js-ready) .inv-footer {
     transition: none;
   }
 }
+
+/* 인쇄 시에는 스크롤이 없어 IntersectionObserver 진입 애니메이션이 트리거되지
+   않아 섹션이 계속 숨김 상태(opacity:0)로 남을 수 있다. 인쇄본에서는 모든 섹션이
+   항상 보이도록 강제한다. */
+@media print {
+  .inv-section,
+  .inv-footer {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
