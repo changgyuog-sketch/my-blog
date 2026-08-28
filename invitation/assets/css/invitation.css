@@ -66,6 +66,10 @@ body {
     "Apple SD Gothic Neo", "Noto Sans KR", Roboto, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+  /* 한글은 공백 없이 줄바꿈되면 단어 중간이 잘려 보이기 쉬우므로(예: "개업식"이
+     "개" / "업식"으로 분리), 단어(어절) 경계에서만 줄바꿈되게 한다. */
+  word-break: keep-all;
+  overflow-wrap: break-word;
 }
 
 .inv-serif {

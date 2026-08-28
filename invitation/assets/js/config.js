@@ -7,12 +7,12 @@ window.INVITATION_CONFIG = {
   event: {
     type: "opening",
     title: "밀양안심방문간호센터 개업식에 초대합니다",
-    dateTimeISO: "2026-08-30T11:00:00+09:00",
-    dateDisplay: "2026년 8월 30일 일요일 오전 11시"
+    dateTimeISO: "2026-09-30T11:00:00+09:00",
+    dateDisplay: "2026년 9월 30일 수요일 오전 11시"
   },
   organizer: {
     name: "박미혜",
-    role: "대표"
+    role: "센터장"
   },
   greeting: {
     message: "소중한 이웃의 곁을 지키는 마음으로\n" +
@@ -29,6 +29,6 @@ window.INVITATION_CONFIG = {
   },
   share: {
     title: "밀양안심방문간호센터 개업식에 초대합니다",
-    description: "2026년 8월 30일 일요일 오전 11시, 경남 밀양시 시청로2길 4"
+    description: "2026년 9월 30일 수요일 오전 11시, 경남 밀양시 시청로2길 4"
   }
 };
