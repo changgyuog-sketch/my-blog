@@ -48,7 +48,7 @@
     const organizer = config.organizer;
     const organizerInfo = document.getElementById("organizer-info");
     if (organizerInfo) {
-      organizerInfo.textContent = `${organizer.name} ${organizer.role}`;
+      organizerInfo.textContent = `${organizer.role} ${organizer.name}`;
     }
 
     // #dday 상단 일시 안내

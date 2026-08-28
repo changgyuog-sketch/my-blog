@@ -36,9 +36,9 @@
 |---|---|
 | 행사 종류 | 방문간호센터 개업식 |
 | 센터(상호)명 | 밀양안심방문간호센터 |
-| 대표자 | 박미혜 (대표) |
+| 대표자 | 박미혜 (센터장) |
 | 주소 | 경남 밀양시 시청로2길 4 |
-| 일시 | 2026년 8월 30일 일요일 오전 11시 (`2026-08-30T11:00:00+09:00`) |
+| 일시 | 2026년 9월 30일 수요일 오전 11시 (`2026-09-30T11:00:00+09:00`) |
 
 이 값들은 실제 업체 정보이므로 예시/가상 데이터가 아니다. §3의 단일 `config` 객체에만 존재하도록
 설계해, 이후 시간이나 주소가 변경되면 `config.js` 값만 수정하면 되게 한다(마크업/스크립트 수정
@@ -111,6 +111,11 @@ localStorage 저장은 넣지 않는다 — 초대장은 1회성 열람 페이�
   `serif`)을 반드시 함께 지정한다.
 - 본문용 산세리프 스택(블로그와 동일 관례): `-apple-system, BlinkMacSystemFont, "Segoe UI",
   "Malgun Gothic", "Apple SD Gothic Neo", "Noto Sans KR", Roboto, Helvetica, Arial, sans-serif`
+- **한글 줄바꿈**: `body`에 `word-break: keep-all; overflow-wrap: break-word;`를 지정한다. 한글은
+  공백이 없으면 브라우저가 아무 글자 사이에서나 줄을 바꿀 수 있어, 좁은 화면(특히 세로로 긴
+  안드로이드 기기)에서 `#hero`의 긴 제목이 "개업식" 같은 단어 중간에서 잘려 "개" / "업식"으로
+  분리되어 보이는 문제가 실제로 발생했다(실기기 스크린샷으로 확인). `keep-all`은 어절(공백) 단위
+  로만 줄바꿈해 이 문제를 막는다.
 - 스케일(모바일 기준, 데스크톱도 컨테이너 폭을 480px로 고정하므로 동일 크기 사용 — §1.4 참고):
 
   | 용도 | font-family | font-size | font-weight |
@@ -204,7 +209,7 @@ localStorage 저장은 넣지 않는다 — 초대장은 1회성 열람 페이�
 ```
 invitation/index.html
 ├─ #hero        커버 — 센터명 "밀양안심방문간호센터" + "개업식에 초대합니다" + 날짜 한 줄 요약
-├─ #greeting    인사말 — 개업 인사 문구 + 대표자(박미혜 대표) 소개
+├─ #greeting    인사말 — 개업 인사 문구 + 대표자(센터장 박미혜) 소개
 ├─ #dday        일시 안내 + D-Day 카운트다운 카드
 ├─ #location    오시는 길 — 지도(iframe) + 센터명/주소 + 길찾기·주소복사 버튼
 └─ footer       마무리 문구 + 공유하기 버튼
@@ -262,12 +267,12 @@ INVITATION_CONFIG = {
   event: {
     type: "opening",
     title: "밀양안심방문간호센터 개업식에 초대합니다",
-    dateTimeISO: "2026-08-30T11:00:00+09:00",
-    dateDisplay: "2026년 8월 30일 일요일 오전 11시"
+    dateTimeISO: "2026-09-30T11:00:00+09:00",
+    dateDisplay: "2026년 9월 30일 수요일 오전 11시"
   },
   organizer: {
     name: "박미혜",
-    role: "대표"
+    role: "센터장"
   },
   greeting: {
     message: "소중한 이웃의 곁을 지키는 마음으로\n" +
@@ -284,7 +289,7 @@ INVITATION_CONFIG = {
   },
   share: {
     title: "밀양안심방문간호센터 개업식에 초대합니다",
-    description: "2026년 8월 30일 일요일 오전 11시, 경남 밀양시 시청로2길 4"
+    description: "2026년 9월 30일 수요일 오전 11시, 경남 밀양시 시청로2길 4"
   }
 }
 ```
@@ -383,7 +388,7 @@ https://maps.google.com/maps?q=%EA%B2%BD%EB%82%A8%20%EB%B0%80%EC%96%91%EC%8B%9C%
   `background-image`만 조건부로 교체하면 되는 구조로 여지를 남긴다(이번 스키마에는 필드를 추가하지
   않음).
 - `#greeting`: `greeting.message`(줄바꿈 포함 문자열, `\n` → `<br>` 치환)를 먼저 표시하고, 그 아래
-  대표자 소개를 `"{organizer.name} {organizer.role}"`(예: "박미혜 대표") 형태로 표시한다.
+  대표자 소개를 `"{organizer.role} {organizer.name}"`(예: "센터장 박미혜") 형태로 표시한다.
   `venue.tel`이 빈 문자열이면 연락처 줄 자체를 렌더링하지 않는다(빈 줄이나 "정보 없음" 문구를
   남기지 않음).
 
